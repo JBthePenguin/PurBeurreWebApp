@@ -1,0 +1,15 @@
+env/
+
+pur_beurre_django_app/pur_beurre_django_app/__pycache__
+
+pur_beurre_django_app/account/__pycache__
+
+pur_beurre_django_app/account/migrations/__pycache__
+
+pur_beurre_django_app/product/__pycache__
+
+pur_beurre_django_app/product/migrations/__pycache__
+
+pur_beurre_django_app/favorite/__pycache__
+
+pur_beurre_django_app/favorite/migrations/__pycache__
