@@ -12,12 +12,13 @@
 
     {% load static %}
     <!-- Bootstrap core CSS -->
-    <link href="{% static 'product/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <!-- Custom fonts for this template -->
     <link href="{% static 'product/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Scope+One" rel="stylesheet" type="text/css">
+
     <!-- Plugin CSS -->
     <link href="{% static 'product/magnific-popup/magnific-popup.css' %}" rel="stylesheet">
 
@@ -35,7 +36,7 @@
     <nav class="container navbar navbar-expand-lg fixed-top" id="mainNav">
       <div class="row" id="topNavBar">
         <div class="col-md-6" id="brand">
-          <a class="js-scroll-trigger" href="/"><span class="logo"><img src="{% static 'product/img/logo.png' %}" width="20%"></span>Pur Beurre</a>
+          <a class="js-scroll-trigger" href="/#about"><span class="logo"><img src="{% static 'product/img/logo.png' %}" width="10%"></span>Pur Beurre</a>
           <button class="navbar-toggler navbar-toggler-right my-auto" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -44,15 +45,15 @@
           <a class="btn btn-xl js-scroll-trigger" href="/">CHERCHER</a>
         </div>
         <div class="col-md-3 my-auto">
-          <a class="btn btn-xl js-scroll-trigger" href="#search">CONNEXION</a>
+          <a class="btn btn-xl js-scroll-trigger" href="/account/">CONNEXION</a>
         </div>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#about">CHERCHER</a>
+              <a class="nav-link js-scroll-trigger" href="/">CHERCHER</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#services">CONNEXION</a>
+              <a class="nav-link js-scroll-trigger" href="/account/">CONNEXION</a>
             </li>
           </ul>
         </div>
@@ -66,13 +67,13 @@
           <a href="mailto:your-email@your-domain.com">Mentions légales</a>
         </div>
         <div class="col-md-6">
-          <a href="#contact">Contact</a>
+          <a href="/#contact">Contact</a>
         </div>
       </div>
     </footer>
 
     <!-- Bootstrap core JavaScript -->
-    <script src="{% static 'product/jquery/jquery.min.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="{% static 'product/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
     <!-- Plugin JavaScript -->
@@ -81,7 +82,7 @@
     <script src="{% static 'product/magnific-popup/jquery.magnific-popup.min.js' %}"></script>
 
     <!-- Custom scripts for this template -->
-    <script src="{%static 'product/js/creative.min.js' %}"></script>
+    <script src="{%static 'product/js/creative.js' %}"></script>
 
   </body>
 

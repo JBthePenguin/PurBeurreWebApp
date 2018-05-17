@@ -48,7 +48,7 @@ h6 {
 
 section {
   padding: 5px;
-  color:  #84827a;
+  color:  #383632;
 }
 
 .section-heading {
@@ -177,7 +177,7 @@ footer a {
 }
 
 header.masthead {
-  padding-top: 10rem;
+  padding-top: 7rem;
   background-image: url("../img/header.jpg");
   background-position: center center;
   -webkit-background-size: cover;
@@ -200,6 +200,43 @@ header.masthead h1 {
 header.masthead h2 {
   text-shadow: -1.5px 0 black, 0 1.5px black, 1.5px 0 black, 0 -1.5px black;
   color: #ffecbb;
+}
+
+#header_prod_list {
+  background-image: none;
+  padding-bottom: 10px;
+}
+
+#header_prod_list img {
+  margin: 5px;
+}
+
+#header_prod_list .btn,
+.portfolio-box .btn {
+  background-color: #a07404;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#31b2c3), to(#a07404));
+  background-image: -webkit-linear-gradient(top, #c3a62f, #a07404);
+  background-image: -moz-linear-gradient(top, #c3a62f, #a07404);
+  background-image: -ms-linear-gradient(top, #c3a62f, #a07404);
+  background-image: -o-linear-gradient(top, #c3a62f, #a07404);
+  background-image: linear-gradient(top, #c3a62f, #a07404);
+  border: 1px solid #00748f;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset, 0 1px 0 #FFF;
+  -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset, 0 1px 0 #FFF;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset, 0 1px 0 #FFF;
+  color: #151313;
+  cursor: pointer;
+  padding: 4px;
+  text-transform: uppercase;
+  text-shadow: 0 1px 0 rgba(0, 0 ,0, .3);
+  font-size: 0.75em;
+}
+
+.portfolio-box .btn {
+  font-size: 0.63em;
 }
 
 .form-wrapper {
@@ -279,7 +316,11 @@ header.masthead h2 {
 }
 
 .form-wrapper #submit:hover,
-.form-wrapper #submit:focus {
+.form-wrapper #submit:focus,
+#header_prod_list .btn:focus,
+#header_prod_list .btn:hover,
+.portfolio-box .btn:focus,
+.portfolio-box .btn:hover {
   background-color: #c3a62f;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#a07404), to(#c3a62f));
   background-image: -webkit-linear-gradient(top, #a07404, #c3a62f);
@@ -289,7 +330,9 @@ header.masthead h2 {
   background-image: linear-gradient(top, #a07404, #c3a62f);
 }
 
-.form-wrapper #submit:active {
+.form-wrapper #submit:active,
+#header_prod_list .btn:active
+.portfolio-box .btn:active {
   -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
   -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
@@ -309,6 +352,8 @@ header.masthead h2 {
   display: block;
   max-width: 650px;
   margin: 0 auto;
+  padding: 15px;
+  color: black;
 }
 
 .portfolio-box .portfolio-box-caption {
@@ -337,7 +382,7 @@ header.masthead h2 {
 .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-category,
 .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-name {
   padding: 0 15px;
-  font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+  font-family: "Scope One", sans-serif;
 }
 
 .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-category {
@@ -395,4 +440,32 @@ header.masthead h2 {
 
 .btn-primary:active, .btn-primary:focus {
   box-shadow: 0 0 0 0.2rem rgba(240, 95, 64, 0.5) !important;
+}
+
+.product-holder {
+  width: auto;
+}
+
+.plus-image {
+  right: -8%;
+  position: absolute;
+  margin-top: -25px;
+  margin-left: -25px;
+}
+
+.portfolio-box .plus-image {
+  right: 24%;
+  position: absolute;
+  margin-top: 0px;
+  margin-left: -25px;
+}
+
+/*Save check*/
+
+#portfolio input {
+  margin: 10px;
+}
+
+#portfolio label {
+  font-size: 0.85em;
 }

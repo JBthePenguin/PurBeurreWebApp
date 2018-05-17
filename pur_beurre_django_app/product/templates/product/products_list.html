@@ -1,0 +1,74 @@
+{% extends 'product/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<header id="header_prod_list" class="masthead bg-dark text-white text-center">
+  <div class="container my-auto">
+    <div class="row">
+      <div class="product-holder col-md-3 mx-auto my-auto">
+        <a href="{{ prod_searched.img_url_big }}">
+          <img class="img-fluid product-image" src="{{ prod_searched.img_url_min }}" alt="Photo du produit non disponible" width="80%">
+          <img class="plus-image" src="{{ prod_searched.nutriscore }}" alt="nutriscore non disponible" width="20%">
+        </a>
+      </div>
+      <div class="col-md-4 mx-auto my-auto">
+        <h2>
+          {{ prod_searched.name }}
+        </h2>
+        <p>
+          <strong>Marque: </strong>{{ prod_searched.brands }}
+        </p>
+        <a class="btn" href="/product/{{ prod_searched.id }}">Voir la fiche descriptive</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="p-0" id="portfolio">
+  <div class="container-fluid p-0">
+    <br><h2 class="text-center">Vous pouvez remplacer cet aliment par:</h2><br>
+    <div class="row no-gutters popup-gallery">
+{% for substitute in substitutes %}
+      <div class="portfolio-box col-md-4 col-sm-12 my-auto text-center">
+        <figure>
+          <a href="{{ substitute.img_url_big }}">
+            <img class="img-fluid product-image" src="{{ substitute.img_url_min }}" alt="Photo non disponible" width="25%">
+            <img class="plus-image" src="{{ substitute.nutriscore }}" alt="nutriscore non disponible" width="13%">
+          </a>
+          <figcaption>
+            <strong>{{ substitute.name }}</strong><br>Marque: <i>{{ substitute.brands }}</i><br>
+            <a class="btn" href="/product/{{ substitute.id }}">Voir la fiche descriptive</a><br>
+            <div class="checkbox">
+              <input id="{{ substitute.name }}" type="checkbox" class="save_prod">
+              <label for="{{ substitute.name }}">Sauvegarder</label>
+            </div>
+          </figcaption>
+         </figure>
+      </div>
+{% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- script JS for check save product -->
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+  $(document).ready(function() {
+    $(".save_prod").change(function() {
+      var id = $(this).attr("id");
+      if(this.checked) {
+        alert(id + " est sauvegardé");
+      } else {
+        var returnVal = confirm("Supprimer " + id);
+      }
+    });
+  });
+</script>
+
+{% endblock %}
