@@ -32,5 +32,8 @@ def description(request, product_id):
     for product in PRODUCTS:
         if product["id"] == prod_id:
             prod_selected = product
-    message = "Page descriptive de " + prod_selected["name"] + "  marque: " + prod_selected["brands"] + "  ---> product.html"
-    return HttpResponse(message)
+    context = {
+        "product": prod_selected
+    }
+    template = loader.get_template('product/product.html')
+    return HttpResponse(template.render(context))

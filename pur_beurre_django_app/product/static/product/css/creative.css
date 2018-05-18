@@ -212,6 +212,7 @@ header.masthead h2 {
 }
 
 #header_prod_list .btn,
+#description .btn,
 .portfolio-box .btn {
   background-color: #a07404;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#31b2c3), to(#a07404));
@@ -237,6 +238,11 @@ header.masthead h2 {
 
 .portfolio-box .btn {
   font-size: 0.63em;
+}
+
+#description .btn {
+  white-space: normal;
+  margin: 15px;
 }
 
 .form-wrapper {
@@ -319,6 +325,8 @@ header.masthead h2 {
 .form-wrapper #submit:focus,
 #header_prod_list .btn:focus,
 #header_prod_list .btn:hover,
+#description .btn:focus,
+#description .btn:hover,
 .portfolio-box .btn:focus,
 .portfolio-box .btn:hover {
   background-color: #c3a62f;
@@ -331,7 +339,8 @@ header.masthead h2 {
 }
 
 .form-wrapper #submit:active,
-#header_prod_list .btn:active
+#header_prod_list .btn:active,
+#description .btn:active,
 .portfolio-box .btn:active {
   -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
   -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
@@ -460,12 +469,16 @@ header.masthead h2 {
   margin-left: -25px;
 }
 
-/*Save check*/
-
 #portfolio input {
   margin: 10px;
 }
 
 #portfolio label {
   font-size: 0.85em;
+}
+
+#description li {
+  list-style: none;
+  margin: 5px;
+  font-size: 0.9em;
 }

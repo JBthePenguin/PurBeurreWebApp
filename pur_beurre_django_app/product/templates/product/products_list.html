@@ -20,7 +20,7 @@
         <p>
           <strong>Marque: </strong>{{ prod_searched.brands }}
         </p>
-        <a class="btn" href="/product/{{ prod_searched.id }}">Voir la fiche descriptive</a>
+        <a class="btn" href="/product/{{ prod_searched.id }}" onclick="window.open(this.href);  return false;">Voir la fiche descriptive</a>
       </div>
     </div>
   </div>
@@ -39,7 +39,7 @@
           </a>
           <figcaption>
             <strong>{{ substitute.name }}</strong><br>Marque: <i>{{ substitute.brands }}</i><br>
-            <a class="btn" href="/product/{{ substitute.id }}">Voir la fiche descriptive</a><br>
+            <a class="btn" href="/product/{{ substitute.id }}" onclick="window.open(this.href);  return false;">Voir la fiche descriptive</a><br>
             <div class="checkbox">
               <input id="{{ substitute.name }}" type="checkbox" class="save_prod">
               <label for="{{ substitute.name }}">Sauvegarder</label>
