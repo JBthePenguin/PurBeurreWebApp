@@ -15,15 +15,18 @@ Including another URLconf
 """
 from django.conf import settings
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
+# from django.contrib.auth import views as auth_views
+
 from product import views
 
 urlpatterns = [
     path('', views.index),
     path('product/', include('product.urls')),
+    path('account/', include('django.contrib.auth.urls')),
     path('account/', include('account.urls')),
     path('favorite/', include('favorite.urls')),
-    path('admin/', admin.site.urls),
+    re_path(r'^admin/', admin.site.urls),
 ]
 
 if settings.DEBUG:

@@ -41,23 +41,16 @@
             <span class="navbar-toggler-icon"></span>
           </button>
         </div>
-        <div class="col-md-3 my-auto">
+        <div class="col-md-2 my-auto">
           <a class="btn btn-xl js-scroll-trigger" href="/">CHERCHER</a>
         </div>
-        <div class="col-md-3 my-auto">
-          <a class="btn btn-xl js-scroll-trigger" href="/account/">CONNEXION</a>
-        </div>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="/">CHERCHER</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="/account/">CONNEXION</a>
-            </li>
-          </ul>
-        </div>
-      </div>
+        {% if member is True %}
+        <!-- Member GUI -->
+        {% include "account/base_member.html" %}
+        {% else %}
+        {% include "account/base_visitor.html" %}
+        {% endif %}
+        <!-- Visitor GUI !-->
     </nav>
     {% block content %}{% endblock %}
     <!-- Footer -->

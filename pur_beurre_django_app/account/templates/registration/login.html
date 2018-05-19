@@ -1,0 +1,21 @@
+{% extends 'account/base.html' %}
+
+{% block title %}Login{% endblock %}
+
+
+{% block content %}
+<header id="login_page" class="masthead text-left text-white d-flex">
+  <div class="container my-auto">
+    <div class="row">
+      <div id="login_side" class="col-lg-4 my-auto">
+        <h2>Connexion</h2>
+        <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn" type="submit">Se connecter</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+{% endblock %}

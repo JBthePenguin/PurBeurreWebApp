@@ -1,3 +1,2 @@
-from django.db import models
-
-# Create your models here.
+#! /usr/bin/env python3
+# coding: utf-8

@@ -115,7 +115,7 @@ img::-moz-selection {
   color: #e9a754;
   text-decoration: none;
 }
-.btn-xl {
+.btn-xl, .logo_member_gui {
   display: none;
 }
 
@@ -162,6 +162,9 @@ img::-moz-selection {
   }
   .btn-xl {
     padding: 1rem 1.25rem;
+    display: inline;
+  }
+  .logo_member_gui {
     display: inline;
   }
 }
@@ -213,6 +216,7 @@ header.masthead h2 {
 
 #header_prod_list .btn,
 #description .btn,
+#login_side .btn,
 .portfolio-box .btn {
   background-color: #a07404;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#31b2c3), to(#a07404));
@@ -327,6 +331,8 @@ header.masthead h2 {
 #header_prod_list .btn:hover,
 #description .btn:focus,
 #description .btn:hover,
+#login_side .btn:focus,
+#login_side .btn:hover,
 .portfolio-box .btn:focus,
 .portfolio-box .btn:hover {
   background-color: #c3a62f;
@@ -341,6 +347,7 @@ header.masthead h2 {
 .form-wrapper #submit:active,
 #header_prod_list .btn:active,
 #description .btn:active,
+#login_side .btn:active,
 .portfolio-box .btn:active {
   -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
   -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
@@ -481,4 +488,44 @@ header.masthead h2 {
   list-style: none;
   margin: 5px;
   font-size: 0.9em;
+}
+
+#login_page {
+  min-height: 100%;
+}
+
+#login_side {
+  background-color: #212529;
+  border: 3px solid #000000;
+  border-radius: 9px;
+  border-color: #000000;
+  padding: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+#id_username, #id_password {
+  width: 100%;
+}
+
+#member_gui img {
+  vertical-align: top;
+}
+
+#member_gui .fa-user {
+  color: green;
+}
+
+#member_gui .fa-sign-out {
+  color: red;
+}
+
+.logo_member_gui img,
+#member_gui .fa-sign-out,
+#member_gui .fa-user {
+  background-color: #dcdcdc;
+  border: 3px solid #000000;
+  border-radius: 9px;
+  border-color: #000000;
+  padding: 5px;
 }
