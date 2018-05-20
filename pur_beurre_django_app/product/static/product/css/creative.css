@@ -217,6 +217,7 @@ header.masthead h2 {
 #header_prod_list .btn,
 #description .btn,
 #login_side .btn,
+#signup_side .btn,
 .portfolio-box .btn {
   background-color: #a07404;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#31b2c3), to(#a07404));
@@ -333,6 +334,8 @@ header.masthead h2 {
 #description .btn:hover,
 #login_side .btn:focus,
 #login_side .btn:hover,
+#signup_side .btn:focus,
+#signup_side .btn:hover,
 .portfolio-box .btn:focus,
 .portfolio-box .btn:hover {
   background-color: #c3a62f;
@@ -348,6 +351,7 @@ header.masthead h2 {
 #header_prod_list .btn:active,
 #description .btn:active,
 #login_side .btn:active,
+#signup_side .btn:active,
 .portfolio-box .btn:active {
   -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
   -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
@@ -490,24 +494,27 @@ header.masthead h2 {
   font-size: 0.9em;
 }
 
-#login_page {
+/*Login Register page*/
+#login_register_page {
   min-height: 100%;
 }
 
-#login_side {
+#login_side, #signup_side {
   background-color: #212529;
   border: 3px solid #000000;
   border-radius: 9px;
   border-color: #000000;
-  padding: 10px;
+  padding: 5px;
   margin-left: 5px;
   margin-right: 5px;
 }
 
 #id_username, #id_password {
-  width: 100%;
+  max-width: 100%;
 }
 
+
+/*Member GUI*/
 #member_gui img {
   vertical-align: top;
 }

@@ -2,4 +2,7 @@ django
 
 django-debug-toolbar
 
+django-registration-redux
+
 psycopg2
+

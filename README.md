@@ -29,7 +29,7 @@ $ cd PurBeurreWebApp
 $ virtualenv -p python3 env
 $ source env/bin/activate
 ```
-### Install all necessary modules ([django](https://www.djangoproject.com/foundation/), [django-debug-toolbar](https://django-debug-toolbar.readthedocs.io/en/stable/), [psycopg2](https://github.com/psycopg/psycopg2)).
+### Install all necessary modules ([django](https://www.djangoproject.com/foundation/), [django-debug-toolbar](https://django-debug-toolbar.readthedocs.io/en/stable/), [psycopg2](https://github.com/psycopg/psycopg2), [django-registration-redux](https://django-registration-redux.readthedocs.io/en/latest/)).
 ```sh
 (env)$ pip install -r requirements.txt
 ```
