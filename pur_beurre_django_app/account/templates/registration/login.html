@@ -1,18 +1,22 @@
 {% extends 'account/base.html' %}
 
 {% block content %}
-<header id="login_register_page" class="masthead text-left text-white d-flex">
+<header id="login_register_page" class="masthead text-center text-white d-flex">
   <div class="container my-auto">
     <div class="row">
       <!-- LOGIN -->
-      <div id="login_side" class="col-lg-10 my-auto">
+      <div id="login_side" class="col-lg-5 mx-auto my-auto">
         <h2>Connexion</h2>
         <form method="post" action="{% url 'auth_login' %}">
           {% csrf_token %}
           {{ form.as_p }}
-          <button class="btn" type="submit" value="Log in">Se connecter</button>
+          <div>
+          <button class="btn" type="submit">Se connecter</button>
+          <!-- redirect to previous page after login -->
+          </div>
           <input type="hidden" value="{% if request.REQUEST.next %}{{ request.REQUEST.next }}{% else %}{% if request.META.HTTP_REFERER %}{{ request.META.HTTP_REFERER }}{% else %}/{% endif %}{% endif %}" name="next" />
-          <br><p>Pas encore de compte? <a href="{% url 'registration_register' %}">c'est ici pour en créer un !!!</a></p>
+          <!--  -->
+          <br><p><small><i>Pas encore de compte?</i></small><a href="{% url 'registration_register' %}"><strong><i> !!!  S'INSCRIRE  !!! </i></strong> </a></p>
         </form>
       </div>
     </div>

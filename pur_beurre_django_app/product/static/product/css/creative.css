@@ -507,10 +507,41 @@ header.masthead h2 {
   padding: 5px;
   margin-left: 5px;
   margin-right: 5px;
+  max-width: 95%;
 }
 
-#id_username, #id_password {
-  max-width: 100%;
+#login_side input, #signup_side input {
+  width: 90%;
+}
+
+#id_gender {
+  overflow: hidden,
+}
+
+#id_gender li {
+  float: left;
+  clear: none;
+}
+
+#id_gender label {
+  float: left;
+  clear: none;
+  display: block;
+  padding: 2px 1em 0 0;
+}
+
+#id_gender input {
+  float: left;
+  clear: none;
+  margin: 2px 0 0 2px;
+}
+
+#id_gender li {
+  list-style: none;
+}
+
+.errorlist{
+  color: #b4ba54;
 }
 
 
@@ -536,3 +567,4 @@ header.masthead h2 {
   border-color: #000000;
   padding: 5px;
 }
+

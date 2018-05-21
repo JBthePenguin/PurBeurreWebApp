@@ -4,16 +4,17 @@
 {% block title %}Registration{% endblock %}
 
 {% block content %}
-<header id="login_register_page" class="masthead text-left text-white d-flex">
+<header id="login_register_page" class="masthead text-center text-white d-flex">
   <div class="container my-auto">
     <div class="row">
-      <div id="signup_side" class="col-lg-10 my-auto">
-        <h2>Créer un compte</h2>
-        <form method="post" action="{% url 'registration_register' %}">
+      <div id="signup_side" class="col-lg-5 mx-auto my-auto">
+        <h2 >Créer un compte</h2>
+        <form method="post" action=".">
           {% csrf_token %}
           {{ form.as_p }}
-          <button class="btn" type="submit" value="Sign up">Créer mon compte</button>
-          <input type="hidden" value="{% if request.REQUEST.next %}{{ request.REQUEST.next }}{% else %}{% if request.META.HTTP_REFERER %}{{ request.META.HTTP_REFERER }}{% else %}/{% endif %}{% endif %}" name="next" />
+          <div>
+            <button class="btn" type="submit">Créer mon compte</button>
+          </div>
         </form>
       </div>
     </div>
