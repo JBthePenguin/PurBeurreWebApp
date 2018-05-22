@@ -14,5 +14,5 @@ urlpatterns = [
     ),
     path('', include('registration.backends.default.urls')),
     path('my_account/', views.my_account),
-    path('wait_confirm/', views.wait_confirm)
+    path('wait_confirm/', views.wait_confirm),
 ]

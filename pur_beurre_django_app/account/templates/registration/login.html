@@ -14,8 +14,11 @@
           <button class="btn" type="submit">Se connecter</button>
           <!-- redirect to previous page after login -->
           </div>
-          <input type="hidden" value="{% if request.REQUEST.next %}{{ request.REQUEST.next }}{% else %}{% if request.META.HTTP_REFERER %}{{ request.META.HTTP_REFERER }}{% else %}/{% endif %}{% endif %}" name="next" />
-          <!--  -->
+          {% if 'account/login/' in request.META.HTTP_REFERER %}
+          <input type="hidden" name="next" value="../my_account">
+          {% else %}
+          <input type="hidden" name="next" value="{{ request.META.HTTP_REFERER }}">
+          {% endif %}
           <br><p><small><i>Pas encore de compte?</i></small><a href="{% url 'registration_register' %}"><strong><i> !!!  S'INSCRIRE  !!! </i></strong> </a></p>
         </form>
       </div>
@@ -23,3 +26,4 @@
   </div>
 </header>
 {% endblock %}
+

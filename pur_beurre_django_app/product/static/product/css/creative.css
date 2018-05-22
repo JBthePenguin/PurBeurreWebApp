@@ -132,17 +132,17 @@ img::-moz-selection {
 
 .navbar-toggler {
   font-size: 1.05rem;
-  line-height: 1;
+  line-height: 1.3;
   border-color: black;
   padding: 0;
   margin: .25rem;
   background-color: #e09535;
 }
 
-.navbar-toggler-icon {
+/*.navbar-toggler-icon {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0, 0, 0, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
-
+*/
 .navbar-nav {
   background-color: #e9a754;
 }
@@ -182,7 +182,6 @@ footer a {
 header.masthead {
   padding-top: 7rem;
   background-image: url("../img/header.jpg");
-  background-position: center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -376,62 +375,6 @@ header.masthead h2 {
   color: black;
 }
 
-.portfolio-box .portfolio-box-caption {
-  position: absolute;
-  bottom: 0;
-  display: block;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  opacity: 0;
-  color: #fff;
-  background: rgba(240, 95, 64, 0.9);
-  -webkit-transition: all 0.2s;
-  -moz-transition: all 0.2s;
-  transition: all 0.2s;
-}
-
-.portfolio-box .portfolio-box-caption .portfolio-box-caption-content {
-  position: absolute;
-  top: 50%;
-  width: 100%;
-  transform: translateY(-50%);
-  text-align: center;
-}
-
-.portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-category,
-.portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-name {
-  padding: 0 15px;
-  font-family: "Scope One", sans-serif;
-}
-
-.portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-category {
-  font-size: 14px;
-  font-weight: 600;
-  text-transform: uppercase;
-}
-
-.portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-name {
-  font-size: 18px;
-}
-
-.portfolio-box:hover .portfolio-box-caption {
-  opacity: 1;
-}
-
-.portfolio-box:focus {
-  outline: none;
-}
-
-@media (min-width: 768px) {
-  .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-category {
-    font-size: 16px;
-  }
-  .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-name {
-    font-size: 22px;
-  }
-}
-
 .text-primary {
   color: #F05F40 !important;
 }
@@ -495,8 +438,21 @@ header.masthead h2 {
 }
 
 /*Login Register page*/
-#login_register_page {
+#login_register_page, #my_account_page {
   min-height: 100%;
+}
+
+#informations {
+  font-size: 1.3em;
+  margin: 15px;
+  background-color: #edcba0;
+  border: 3px solid #000000;
+  border-radius: 9px;
+  border-color: #000000;
+}
+
+#informations li {
+  list-style: none;
 }
 
 #login_side, #signup_side {
