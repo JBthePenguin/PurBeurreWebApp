@@ -8,13 +8,13 @@
   <div class="container my-auto">
     <div class="row">
       <div class="product-holder col-md-3 mx-auto my-auto">
-        <a href="{{ product.img_url_big }}">
-          <img class="img-fluid product-image" src="{{ product.img_url_big }}" alt="Photo du produit non disponible" width="80%">
+        <a href="{{ product.image_url }}">
+          <img class="img-fluid product-image" src="{{ product.image_url }}" alt="Photo du produit non disponible" width="80%">
         </a>
       </div>
       <div class="col-md-4 mx-auto my-auto">
         <h2>
-          {{ product.name }}
+          {{ product.product_name }}
         </h2>
         <p>
           <strong>Marque: </strong>{{ product.brands }}
@@ -28,7 +28,7 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-12 col-md-6 mx-auto my-auto text-center">
-        <img class="img-fluid" src="{{ product.nutriscore }}" alt="nutriscore non disponible" width=50%">
+        <img class="img-fluid" src="/static/product/img/nutrition_grades/nutriscore-{{ product.nutrition_grades }}.png" alt="nutriscore non disponible" width=50%">
       </div>
       <div class="col-sm-12 col-md-6 mx-auto my-auto text-center">
         <p>
@@ -78,9 +78,9 @@
         </ul>
       </div>
       <div class="col-sm-12 mx-auto my-auto text-center">
-        <a class="btn" href="{{ product.link_off }}" onclick="window.open(this.href);  return false;">
+        <a class="btn" href="{{ product.url }}" onclick="window.open(this.href);  return false;">
           Voir le descriptif complet sur le site <i>OpenFoodFacts</i><br>
-          {{ product.link_off }}
+          {{ product.url }}
         </a>
       </div>
     </div>

@@ -8,14 +8,14 @@
   <div class="container my-auto">
     <div class="row">
       <div class="product-holder col-md-3 mx-auto my-auto">
-        <a href="{{ prod_searched.img_url_big }}">
-          <img class="img-fluid product-image" src="{{ prod_searched.img_url_min }}" alt="Photo du produit non disponible" width="80%">
-          <img class="plus-image" src="{{ prod_searched.nutriscore }}" alt="nutriscore non disponible" width="20%">
+        <a href="{{ prod_searched.image_url }}">
+          <img class="img-fluid product-image" src="{{ prod_searched.image_small_url }}" alt="Photo du produit non disponible" width="80%">
+          <img class="plus-image" src="/static/product/img/nutrition_grades/nutriscore-{{ prod_searched.nutrition_grades }}.png" alt="nutriscore non disponible" width="20%">
         </a>
       </div>
       <div class="col-md-4 mx-auto my-auto">
         <h2>
-          {{ prod_searched.name }}
+          {{ prod_searched.product_name }}
         </h2>
         <p>
           <strong>Marque: </strong>{{ prod_searched.brands }}
@@ -33,16 +33,16 @@
 {% for substitute in substitutes %}
       <div class="portfolio-box col-md-4 col-sm-12 my-auto text-center">
         <figure>
-          <a href="{{ substitute.img_url_big }}">
-            <img class="img-fluid product-image" src="{{ substitute.img_url_min }}" alt="Photo non disponible" width="25%">
-            <img class="plus-image" src="{{ substitute.nutriscore }}" alt="nutriscore non disponible" width="13%">
+          <a href="{{ substitute.image_url }}">
+            <img class="img-fluid product-image" src="{{ substitute.image_small_url }}" alt="Photo non disponible" width="25%">
+            <img class="plus-image" src="/static/product/img/nutrition_grades/nutriscore-{{ substitute.nutrition_grades }}.png" alt="nutriscore non disponible" width="13%">
           </a>
           <figcaption>
-            <strong>{{ substitute.name }}</strong><br>Marque: <i>{{ substitute.brands }}</i><br>
+            <strong>{{ substitute.product_name }}</strong><br>Marque: <i>{{ substitute.brands }}</i><br>
             <a class="btn" href="/product/{{ substitute.id }}" onclick="window.open(this.href);  return false;">Voir la fiche descriptive</a><br>
             <div class="checkbox">
-              <input id="{{ substitute.name }}" type="checkbox" class="save_prod">
-              <label for="{{ substitute.name }}">Sauvegarder</label>
+              <input id="{{ substitute.product_name }}" type="checkbox" class="save_prod">
+              <label for="{{ substitute.product_name }}">Sauvegarder</label>
             </div>
           </figcaption>
          </figure>

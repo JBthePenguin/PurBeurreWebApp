@@ -3,15 +3,14 @@
 
 from django.shortcuts import render
 
-from .example_mod import PRODUCTS
+from .models import Product
+
 
 # VIEWS
 def index(request):
     return render(request, 'product/index.html')
 
-def products_list(request, products):
-    prod_searched = products[0]
-    substitutes = products[1:]
+def products_list(request, prod_searched, substitutes):
     context = {
         "prod_searched": prod_searched,
         "substitutes" : substitutes
@@ -19,14 +18,20 @@ def products_list(request, products):
     return render(request, 'product/products_list.html', context)
 
 def search_substitute(request):
-    return products_list(request, PRODUCTS)
+    prod_searched = Product.objects.get(id=1008)
+    substitutes = [
+        Product.objects.get(id=2058),
+        Product.objects.get(id=2008),
+        Product.objects.get(id=4058),
+        Product.objects.get(id=2658),
+        Product.objects.get(id=12500),
+        Product.objects.get(id=10058),
+    ]
+    return products_list(request, prod_searched, substitutes)
 
 def description(request, product_id):
-    prod_id = int(product_id)
-    for product in PRODUCTS:
-        if product["id"] == prod_id:
-            prod_selected = product
+    product = Product.objects.get(id=product_id)
     context = {
-        "product": prod_selected
+        "product": product
     }
     return render(request, 'product/product.html', context)
