@@ -3,7 +3,7 @@
 
 from django.shortcuts import render
 
-from .models import PRODUCTS
+from .example_mod import PRODUCTS
 
 # VIEWS
 def index(request):
