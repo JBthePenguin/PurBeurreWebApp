@@ -3,7 +3,6 @@
 {% load static %}
 
 {% block content %}
-
 <header id="search" class="masthead text-center text-white d-flex">
   <div class="container my-auto">
     <div class="row">
@@ -15,8 +14,15 @@
       </div>
       <div class="col-lg-8 mx-auto">
         <h2>Trouvez un produit de substitution pour ceux que vous consommez tous les jours.</h2>
-        <form class="form-wrapper" action="/product/" method="post">{% csrf_token %}
-          <input type="text" id="input_search" name="name_prod_replaced" placeholder="Saisir le nom du produit que vous voulez substituer:" required>
+        {% if alert_message is not False %}
+          <div class="alert alert-warning alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Désolé!</strong> Aucun produit n'a été trouvé.<br>
+            <i>info:</i> {{ alert_message }}
+          </div>
+        {% endif %}
+        <form class="form-wrapper" action="{% url 'search_substitute' %}" method="get">
+          <input type="text" id="input_search" name="search_term" placeholder="Saisir le nom du produit que vous voulez substituer:" required>
           <input type="submit" value="CHERCHER" id="submit" >
         </form>
       </div>

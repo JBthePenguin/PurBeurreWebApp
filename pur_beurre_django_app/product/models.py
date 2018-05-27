@@ -6,10 +6,10 @@ from django.db import models
 
 class Product(models.Model):
     code = models.CharField(max_length=255, null=True)
-    product_name = models.CharField(max_length=255, null=True)
-    brands = models.CharField(max_length=255, null=True)
-    categories = models.CharField(max_length=255, null=True)
-    nutrition_grades = models.CharField(max_length=255, null=True)
+    product_name = models.CharField(db_index=True, max_length=255, null=True)
+    brands = models.CharField(db_index=True, max_length=255, null=True)
+    categories = models.CharField(db_index=True, max_length=255, null=True)
+    nutrition_grades = models.CharField(db_index=True, max_length=255, null=True)
     url = models.CharField(max_length=255, null=True)
     image_url = models.CharField(max_length=255, null=True)
     image_small_url = models.CharField(max_length=255, null=True)

@@ -3,24 +3,24 @@
 {% load static %}
 
 {% block content %}
-
+<div id="page_product_list">
 <header id="header_prod_list" class="masthead bg-dark text-white text-center">
   <div class="container my-auto">
     <div class="row">
       <div class="product-holder col-md-3 mx-auto my-auto">
-        <a href="{{ prod_searched.image_url }}">
-          <img class="img-fluid product-image" src="{{ prod_searched.image_small_url }}" alt="Photo du produit non disponible" width="80%">
-          <img class="plus-image" src="/static/product/img/nutrition_grades/nutriscore-{{ prod_searched.nutrition_grades }}.png" alt="nutriscore non disponible" width="20%">
+        <a href="{{ product.image_url }}">
+          <img class="img-fluid product-image" src="{{ product.image_small_url }}" alt="Photo du produit non disponible" width="70%">
+          <img class="plus-image" src="/static/product/img/nutrition_grades/nutriscore-{{ product.nutrition_grades }}.png" alt="nutriscore non disponible" width="23%">
         </a>
       </div>
       <div class="col-md-4 mx-auto my-auto">
         <h2>
-          {{ prod_searched.product_name }}
+          {{ product.product_name }}
         </h2>
         <p>
-          <strong>Marque: </strong>{{ prod_searched.brands }}
+          <strong>Marque: </strong>{{ product.brands }}
         </p>
-        <a class="btn" href="/product/{{ prod_searched.id }}" onclick="window.open(this.href);  return false;">Voir la fiche descriptive</a>
+        <a class="btn" href="/product/{{ product.id }}" onclick="window.open(this.href);  return false;">Voir la fiche descriptive</a>
       </div>
     </div>
   </div>
@@ -28,9 +28,14 @@
 
 <section class="p-0" id="portfolio">
   <div class="container-fluid p-0">
+    {% if substitutes.count == 0 %}
+    <div class="alert alert-warning">
+      <strong>Désolé!</strong> Aucun substitut à ce produit n'a été trouvé.<br>
+    </div>
+    {% else %}
     <br><h2 class="text-center">Vous pouvez remplacer cet aliment par:</h2><br>
     <div class="row no-gutters popup-gallery">
-{% for substitute in substitutes %}
+      {% for substitute in substitutes %}
       <div class="portfolio-box col-md-4 col-sm-12 my-auto text-center">
         <figure>
           <a href="{{ substitute.image_url }}">
@@ -47,10 +52,12 @@
           </figcaption>
          </figure>
       </div>
-{% endfor %}
+      {% endfor %}
+      {% endif %}
     </div>
   </div>
 </section>
+</div>
 
 <!-- script JS for check save product -->
 <script

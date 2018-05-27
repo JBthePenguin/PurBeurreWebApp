@@ -1,33 +1,37 @@
 #! /usr/bin/env python3
 # coding: utf-8
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+
+from product.search_request import found_product, found_substitutes
 
 from .models import Product
 
 
 # VIEWS
-def index(request):
-    return render(request, 'product/index.html')
-
-def products_list(request, prod_searched, substitutes):
+def index(request, alert_message=False):
     context = {
-        "prod_searched": prod_searched,
+        "alert_message": alert_message,
+    }
+    return render(request, 'product/index.html', context)
+
+
+def products_list(request, product, substitutes):
+    context = {
+        "product": product,
         "substitutes" : substitutes
     }
     return render(request, 'product/products_list.html', context)
 
+
 def search_substitute(request):
-    prod_searched = Product.objects.get(id=1008)
-    substitutes = [
-        Product.objects.get(id=2058),
-        Product.objects.get(id=2008),
-        Product.objects.get(id=4058),
-        Product.objects.get(id=2658),
-        Product.objects.get(id=12500),
-        Product.objects.get(id=10058),
-    ]
-    return products_list(request, prod_searched, substitutes)
+    search_term = request.GET.get('search_term')
+    product = found_product(search_term)
+    if product in ["API connect error", "api no result", "db no result"]:
+        return index(request, product)
+    substitutes = found_substitutes(product)
+    return products_list(request, product, substitutes)
+
 
 def description(request, product_id):
     product = Product.objects.get(id=product_id)
