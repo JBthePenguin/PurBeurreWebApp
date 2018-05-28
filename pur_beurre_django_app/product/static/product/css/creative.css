@@ -217,7 +217,7 @@ header.masthead h2 {
 #description .btn,
 #login_side .btn,
 #signup_side .btn,
-.portfolio-box .btn {
+#portfolio .btn {
   background-color: #a07404;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#31b2c3), to(#a07404));
   background-image: -webkit-linear-gradient(top, #c3a62f, #a07404);
@@ -240,7 +240,7 @@ header.masthead h2 {
   font-size: 0.75em;
 }
 
-.portfolio-box .btn {
+#portfolio .btn {
   font-size: 0.63em;
 }
 
@@ -335,8 +335,8 @@ header.masthead h2 {
 #login_side .btn:hover,
 #signup_side .btn:focus,
 #signup_side .btn:hover,
-.portfolio-box .btn:focus,
-.portfolio-box .btn:hover {
+#portfolio .btn:focus,
+#portfolio .btn:hover {
   background-color: #c3a62f;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#a07404), to(#c3a62f));
   background-image: -webkit-linear-gradient(top, #a07404, #c3a62f);
@@ -351,11 +351,21 @@ header.masthead h2 {
 #description .btn:active,
 #login_side .btn:active,
 #signup_side .btn:active,
-.portfolio-box .btn:active {
+#portfolio .btn:active {
   -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
   -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
   outline: 0;
+}
+
+#portfolio .btn a {
+  text-decoration: none;
+  color: black;
+  font-size: 1.1em;
+}
+
+#portfolio .pager .btn {
+  border-radius: 100px;
 }
 
 .form-wrapper #submit::-moz-focus-inner {

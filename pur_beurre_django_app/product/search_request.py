@@ -61,9 +61,10 @@ def found_product(search_term):
     return product
 
 
-def found_substitutes(product):
+def found_substitutes(product_id):
     """ found substitutes for the product in db """
     # select products in the same categories with better or same grade
+    product = Product.objects.get(id=product_id)
     list_categories = product.categories.split(",")
     list_categories = list_categories[-3:]
     categories = ",".join(list_categories)
@@ -76,7 +77,4 @@ def found_substitutes(product):
         ).order_by("nutrition_grades", "product_name", "brands"
         ).distinct("nutrition_grades", "product_name", "brands"
     )
-    # limit number of results
-    if len(substitutes) > 10:
-        substitutes = substitutes[:10]
-    return substitutes
+    return product, substitutes
