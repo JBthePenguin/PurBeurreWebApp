@@ -21,7 +21,7 @@
             <i>info:</i> {{ alert_message }}
           </div>
         {% endif %}
-        <form class="form-wrapper" action="{% url 'search_substitute' %}" method="get">
+        <form class="form-wrapper" action="{% url 'search_product' %}" method="get">
           <input type="text" id="input_search" name="search_term" placeholder="Saisir le nom du produit que vous voulez substituer:" required>
           <input type="submit" value="CHERCHER" id="submit" >
         </form>

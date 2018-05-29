@@ -14,7 +14,7 @@ def index(request, alert_message=False):
     return render(request, 'product/index.html', context)
 
 
-def products_list(request, product_id):
+def search_substitutes(request, product_id):
     product, substitutes = found_substitutes(product_id)
     if substitutes.count() == 0:
         substitutes_pag = False
@@ -34,15 +34,15 @@ def products_list(request, product_id):
         "substitutes" : substitutes_pag,
         "paginate": True
     }
-    return render(request, 'product/products_list.html', context)
+    return render(request, 'product/substitutes_list.html', context)
 
 
-def search_substitute(request):
+def search_product(request):
     search_term = request.GET.get('search_term')
     product = found_product(search_term)
     if product in ["API connect error", "api no result", "db no result"]:
         return index(request, product)
-    return redirect('products_list', product.id)
+    return redirect('substitutes_list', product.id)
 
 def description(request, product_id):
     product = Product.objects.get(id=product_id)

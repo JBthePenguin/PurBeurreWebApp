@@ -4,7 +4,7 @@ import re
 from . import views
 
 urlpatterns = [
-	path('list/<int:product_id>/', views.products_list, name='products_list'),
-    path('search/', views.search_substitute, name='search_substitute'),
+	path('substitutes_list/<int:product_id>/', views.search_substitutes, name='substitutes_list'),
+    path('search/', views.search_product, name='search_product'),
     path('<int:product_id>/', views.description),
 ]

@@ -217,7 +217,8 @@ header.masthead h2 {
 #description .btn,
 #login_side .btn,
 #signup_side .btn,
-#portfolio .btn {
+#portfolio .btn,
+#favorites .btn {
   background-color: #a07404;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#31b2c3), to(#a07404));
   background-image: -webkit-linear-gradient(top, #c3a62f, #a07404);
@@ -336,7 +337,9 @@ header.masthead h2 {
 #signup_side .btn:focus,
 #signup_side .btn:hover,
 #portfolio .btn:focus,
-#portfolio .btn:hover {
+#portfolio .btn:hover,
+#favorites .btn:focus,
+#favorites .btn:hover {
   background-color: #c3a62f;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#a07404), to(#c3a62f));
   background-image: -webkit-linear-gradient(top, #a07404, #c3a62f);
@@ -351,14 +354,16 @@ header.masthead h2 {
 #description .btn:active,
 #login_side .btn:active,
 #signup_side .btn:active,
-#portfolio .btn:active {
+#portfolio .btn:active,
+#favorites .btn:active {
   -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
   -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
   outline: 0;
 }
 
-#portfolio .btn a {
+#portfolio .btn a, 
+#favorites .btn a{
   text-decoration: none;
   color: black;
   font-size: 1.1em;
@@ -532,5 +537,26 @@ header.masthead h2 {
   border-radius: 9px;
   border-color: #000000;
   padding: 5px;
+}
+
+#favorites .card {
+  background-color: #edcba0;
+  margin: 10px;
+  padding: 5px;
+}
+
+#favorites .card-header {
+  margin: 5px;
+  background-color: #c09973;
+}
+
+#favorites .card-body {
+  font-size: 0.9em;
+}
+
+#favorites .list-group-item {
+  font-size: 0.9em;
+  background-color: #d7a87b;
+  margin: 3px;
 }
 
