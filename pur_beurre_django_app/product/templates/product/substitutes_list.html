@@ -20,7 +20,7 @@
         <p>
           <strong>Marque: </strong>{{ product.brands }}
         </p>
-        <a class="btn" href="/product/{{ product.id }}" onclick="window.open(this.href);  return false;">Voir la fiche descriptive</a>
+        <a class="btn" href="/product/{{ product.id }}/" onclick="window.open(this.href);  return false;">Voir la fiche descriptive</a>
       </div>
     </div>
   </div>
@@ -33,7 +33,10 @@
       <strong>Désolé!</strong> Aucun substitut à ce produit n'a été trouvé.<br>
     </div>
     {% else %}
-    <br><h2 class="text-center">Vous pouvez remplacer cet aliment par:</h2><br>
+    {% if not user.is_authenticated %}
+    <h6 class="text-center"><small><i>Pour sauvegarder des produits, <a href="{% url 'auth_login' %}">se connecter</a> ou <a href="{% url 'registration_register' %}">créer un compte</a>.</i></small></h6> 
+    {% endif %}
+    <h2 class="text-center">Vous pouvez remplacer cet aliment par:</h2><br>
     <div class="row no-gutters popup-gallery">
       {% for substitute in substitutes %}
       <div class="portfolio-box col-md-4 col-sm-12 my-auto text-center">
@@ -44,11 +47,14 @@
           </a>
           <figcaption>
             <strong>{{ substitute.product_name }}</strong><br>Marque: <i>{{ substitute.brands }}</i><br>
-            <a class="btn" href="/product/{{ substitute.id }}" onclick="window.open(this.href);  return false;">Voir la fiche descriptive</a><br>
+            <a class="btn" href="/product/{{ substitute.id }}/" onclick="window.open(this.href);  return false;">Voir la fiche descriptive</a><br>
+            {% if user.is_authenticated %}
+            <!-- Save check for member -->
             <div class="checkbox">
-              <input id="{{ substitute.product_name }}" type="checkbox" class="save_prod">
-              <label for="{{ substitute.product_name }}">Sauvegarder</label>
+              <input id="{{ substitute.id }}" type="checkbox" class="save_prod">
+              <label for="{{ substitute.id }}">Sauvegarder</label>
             </div>
+            {% endif %}
           </figcaption>
          </figure>
       </div>
@@ -75,6 +81,7 @@
 </section>
 </div>
 
+{% if user.is_authenticated %}
 <!-- script JS for check save product -->
 <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -86,12 +93,25 @@
     $(".save_prod").change(function() {
       var id = $(this).attr("id");
       if(this.checked) {
-        alert(id + " est sauvegardé");
+        $.get(
+          "/favorite/save/{{ product.id }}/" + id + "/",
+          function(data, status){
+            alert(
+              "Data: " + data + "\nStatus: " + status + "\n" + id + " est sauvegardé");
+          }
+        );
       } else {
-        var returnVal = confirm("Supprimer " + id);
+        $.get(
+          "/favorite/delete/{{ product.id }}/" + id + "/",
+          function(data, status){
+            alert(
+              "Data: " + data + "\nStatus: " + status + "\n" + id + " est supprimé.");
+          }
+        );
       }
     });
   });
 </script>
+{% endif %}
 
 {% endblock %}

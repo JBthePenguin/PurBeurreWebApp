@@ -3,6 +3,7 @@
 
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
+from django.http import HttpResponse
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from .db_request import select_favorites, select_substitutes
 
@@ -36,4 +37,13 @@ def display_favorite(request, product_id):
     }
     return render(request, 'product/substitutes_list.html', context)
 
+
+@login_required
+def save_favorite(request, product_id, substitute_id):
+    return HttpResponse("save")
+
+
+@login_required
+def delete_favorite(request, product_id, substitute_id):
+    return HttpResponse("delete")
 

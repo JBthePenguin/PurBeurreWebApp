@@ -560,3 +560,6 @@ header.masthead h2 {
   margin: 3px;
 }
 
+.checkbox input {
+  vertical-align: middle;
+}
