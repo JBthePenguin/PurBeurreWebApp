@@ -48,3 +48,23 @@ def select_favorites(account_id):
             user_favorite = [product, substitutes]
             user_favorites.append(user_favorite)   
     return user_favorites
+
+
+def select_substitutes(account_id, product_id):
+    """ Construct a favorite (product, substitutes) with
+    the product id """
+    product = Product.objects.get(id=product_id)
+    # select substitutes saved for this product in db
+    all_favorites = FAVORITES
+    account_favorites = []
+    for favorite in all_favorites:
+        if (
+            favorite["account_id"] == account_id) and (
+            favorite["product_id"] == product.id
+        ):
+            account_favorites.append(favorite)
+    substitutes = []
+    for favorite in account_favorites:
+        substitute = Product.objects.get(id=favorite["substitute_id"])
+        substitutes.append(substitute)
+    return product, substitutes

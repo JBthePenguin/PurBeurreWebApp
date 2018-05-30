@@ -3,13 +3,8 @@
 
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
-from .db_request import select_favorites 
-
-
-class Favorite:
-    def __init__(self, product, substitutes):
-        self.product = product
-        self.substitutes = substitutes
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from .db_request import select_favorites, select_substitutes
 
 
 @login_required
@@ -19,3 +14,26 @@ def favorites_list(request):
         "favorites": user_favorites,
     }
     return render(request, 'favorite/favorites.html', context)
+
+
+@login_required
+def display_favorite(request, product_id):
+    product, substitutes = select_substitutes(request.user.id, product_id)
+    paginator = Paginator(substitutes, 6)
+    page = request.GET.get('page')
+    try:
+        substitutes_pag = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        substitutes_pag = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        substitutes_pag = paginator.page(paginator.num_pages)
+    context = {
+        "product": product,
+        "substitutes" : substitutes_pag,
+        "paginate": True
+    }
+    return render(request, 'product/substitutes_list.html', context)
+
+
