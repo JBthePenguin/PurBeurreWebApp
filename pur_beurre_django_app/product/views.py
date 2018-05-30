@@ -44,6 +44,7 @@ def search_product(request):
         return index(request, product)
     return redirect('substitutes_list', product.id)
 
+
 def description(request, product_id):
     product = Product.objects.get(id=product_id)
     context = {

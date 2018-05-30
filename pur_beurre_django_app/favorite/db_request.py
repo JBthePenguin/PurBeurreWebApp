@@ -2,23 +2,23 @@
 # coding: utf-8
 
 from product.models import Product
-from .example_mod import FAVORITES
+from .models import Favorite
 
 def select_favorites(account_id):
     """ select all favorites for a specific account
     and return a list of them """
     # select all account's favorites in db
-    all_favorites = FAVORITES
+    all_favorites = Favorite.objects.all()
     account_favorites = []
     for favorite in all_favorites:
-        if favorite["account_id"] == account_id:
+        if favorite.account_id == account_id:
             account_favorites.append(favorite)
     # construct favorite : {product: substitutes} -> [product, substitute]
     # construct favorites : [favorite]
     favorites = []
     for account_favorite in account_favorites:
-        product = Product.objects.get(id=account_favorite["product_id"])
-        substitute = Product.objects.get(id=account_favorite["substitute_id"])
+        product = Product.objects.get(id=account_favorite.product_id)
+        substitute = Product.objects.get(id=account_favorite.substitute_id)
         if len(favorites) == 0:
             # for the first favorite
             substitutes = []
@@ -55,16 +55,32 @@ def select_substitutes(account_id, product_id):
     the product id """
     product = Product.objects.get(id=product_id)
     # select substitutes saved for this product in db
-    all_favorites = FAVORITES
+    all_favorites = Favorite.objects.all()
     account_favorites = []
     for favorite in all_favorites:
         if (
-            favorite["account_id"] == account_id) and (
-            favorite["product_id"] == product.id
+            favorite.account_id == account_id) and (
+            favorite.product_id == product.id
         ):
             account_favorites.append(favorite)
     substitutes = []
     for favorite in account_favorites:
-        substitute = Product.objects.get(id=favorite["substitute_id"])
+        substitute = Product.objects.get(id=favorite.substitute_id)
         substitutes.append(substitute)
     return product, substitutes
+
+
+def save_favorite_in_db(account_id, product_id, substitute_id):
+    Favorite.objects.create(
+        account_id = account_id,
+        product_id = product_id,
+        substitute_id = substitute_id,
+    )
+
+
+def delete_favorite_in_db(account_id, product_id, substitute_id):
+    Favorite.objects.filter(
+        account_id = account_id,
+        product_id = product_id,
+        substitute_id = substitute_id,
+    ).delete()
