@@ -1,12 +1,27 @@
 from django.db import models
-
+from django.contrib.auth.models import User
+from product.models import Product
 
 class Favorite(models.Model):
 
     class Meta:
-        unique_together = (('account_id', 'product_id', 'substitute_id'),)
+        unique_together = (('user', 'fav_product', 'fav_substitute'),)
 
-    account_id = models.IntegerField(null=True)
-    product_id = models.IntegerField(null=True)
-    substitute_id = models.IntegerField(null=True)
+    user = models.ForeignKey(User,
+        default='',
+        on_delete=models.CASCADE
+    )
+    fav_product = models.ForeignKey(
+        Product,
+        related_name='fav_product_product',
+        default='',
+        on_delete=models.CASCADE
+    )
+    fav_substitute = models.ForeignKey(
+        Product,
+        related_name='fav_substitute_product',
+        default='',
+        on_delete=models.CASCADE
+    )
     creating_date = models.DateTimeField(auto_now_add=True)
+

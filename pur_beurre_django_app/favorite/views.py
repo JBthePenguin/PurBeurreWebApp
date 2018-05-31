@@ -10,7 +10,7 @@ from .db_request import select_favorites, select_substitutes, save_favorite_in_d
 
 @login_required
 def favorites_list(request):
-    user_favorites = select_favorites(request.user.id)
+    user_favorites = select_favorites(request.user)
     context = {
         "favorites": user_favorites,
     }
@@ -19,7 +19,7 @@ def favorites_list(request):
 
 @login_required
 def display_favorite(request, product_id):
-    product, substitutes = select_substitutes(request.user.id, product_id)
+    product, substitutes = select_substitutes(request.user, product_id)
     paginator = Paginator(substitutes, 6)
     page = request.GET.get('page')
     try:
@@ -40,12 +40,12 @@ def display_favorite(request, product_id):
 
 @login_required
 def save_favorite(request, product_id, substitute_id):
-    save_favorite_in_db(request.user.id, product_id, substitute_id)
+    save_favorite_in_db(request.user, product_id, substitute_id)
     return HttpResponse("save")
 
 
 @login_required
 def delete_favorite(request, product_id, substitute_id):
-    delete_favorite_in_db(request.user.id, product_id, substitute_id)
+    delete_favorite_in_db(request.user, product_id, substitute_id)
     return HttpResponse("delete")
 

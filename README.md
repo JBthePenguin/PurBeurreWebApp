@@ -34,8 +34,8 @@ $ ./manage.py migrate
 #### Data products\*: 2 choices
 1. **fastest** one,  with a dump file\* (.json) and the django loaddata command
 ```sh
-$ wget https://drive.google.com/open?id=1esW4xwGNLCk9ah-hcKbuMCZ2iBjFh5FO
-$ ./manage.py loaddata dump_products_270518.json
+$ wget -O products.json "https://drive.google.com/uc?export=download&id=1esW4xwGNLCk9ah-hcKbuMCZ2iBjFh5FO"
+$ ./manage.py loaddata products.json
 ```
 2. **slowest** one, with the script that imports datas from the [OpenFoodFacts API](https://en.wiki.openfoodfacts.org/API):
 ```sh
