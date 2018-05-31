@@ -51,7 +51,15 @@
             {% if user.is_authenticated %}
             <!-- Save check for member -->
             <div class="checkbox">
-              <input id="{{ substitute.id }}" type="checkbox" class="save_prod">
+              {% if 'favorite/' in request.META.HTTP_REFERER %}
+                <input id="{{ substitute.id }}" type="checkbox" class="save_prod" checked>
+              {% else %}
+                {% if substitute.id in substitutes_saved %}
+                  <input id="{{ substitute.id }}" type="checkbox" class="save_prod" checked>
+                {% else %}
+                  <input id="{{ substitute.id }}" type="checkbox" class="save_prod" unchecked>
+                {% endif %}
+              {% endif %}
               <label for="{{ substitute.id }}">Sauvegarder</label>
             </div>
             {% endif %}
