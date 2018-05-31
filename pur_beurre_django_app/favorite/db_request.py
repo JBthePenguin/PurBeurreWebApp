@@ -53,6 +53,7 @@ def select_substitutes(user, product_id):
     """ Construct a favorite (product, substitutes) with
     the product id """
     # select substitutes saved for this product in db
+    product = Product.objects.get(id=product_id)
     all_favorites = Favorite.objects.all()
     account_favorites = []
     for favorite in all_favorites:
@@ -65,7 +66,7 @@ def select_substitutes(user, product_id):
     for favorite in account_favorites:
         substitute = Product.objects.get(id=favorite.fav_substitute.id)
         substitutes.append(substitute)
-    return favorite.fav_product, substitutes
+    return product, substitutes
 
 
 def save_favorite_in_db(user, product_id, substitute_id):

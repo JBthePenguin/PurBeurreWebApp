@@ -18,6 +18,11 @@
 
 <section id="favorites">
   <div class="container">
+    {% if not favorites %}
+    <div class="alert alert-warning">
+      Vous n'avez aucun produit sauvegardé.<br>
+    </div>
+    {% endif %}
     <div class="row">
     {% for favorite in favorites %}
       <div class="card col-md-5 mx-auto">

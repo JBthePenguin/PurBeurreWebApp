@@ -89,6 +89,21 @@
 </section>
 </div>
 
+<!-- set up the modal to start hidden and fade in and out -->
+<div id="myModal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- dialog body -->
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        Hello world!
+      </div>
+      <!-- dialog buttons -->
+      <div class="modal-footer"><button type="button" class="btn btn-primary">OK</button></div>
+    </div>
+  </div>
+</div>
+
 {% if user.is_authenticated %}
 <!-- script JS for check save product  (http request)-->
 <script
@@ -103,19 +118,15 @@
       if(this.checked) {
         $.get(
           "/favorite/save/{{ product.id }}/" + id + "/",
-          function(data, status){
-            alert(
-              "Data: " + data + "\nStatus: " + status + "\n" + id + " est sauvegardé");
-          }
         );
       } else {
-        $.get(
-          "/favorite/delete/{{ product.id }}/" + id + "/",
-          function(data, status){
-            alert(
-              "Data: " + data + "\nStatus: " + status + "\n" + id + " est supprimé.");
-          }
-        );
+        if(confirm("Êtes-vous sûr(e) de vouloir supprimer ce produit?")){
+          $.get(
+            "/favorite/delete/{{ product.id }}/" + id + "/",
+          );
+        } else {
+          $(this).prop( "checked", true );
+        }
       }
     });
   });
