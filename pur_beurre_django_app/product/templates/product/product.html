@@ -7,6 +7,9 @@
 <header id="header_prod_list" class="masthead bg-dark text-white text-center">
   <div class="container my-auto">
     <div class="row">
+      <div class="col-md-1 my-auto">
+        <a type="button" class="btn" href="{{ request.META.HTTP_REFERER }}">RETOUR</a>
+      </div>
       <div class="product-holder col-md-3 mx-auto my-auto">
         <a href="{{ product.image_url }}">
           <img class="img-fluid product-image" src="{{ product.image_url }}" alt="Photo du produit non disponible" width="80%">

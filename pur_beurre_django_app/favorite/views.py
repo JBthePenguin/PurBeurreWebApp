@@ -33,7 +33,8 @@ def display_favorite(request, product_id):
     context = {
         "product": product,
         "substitutes" : substitutes_pag,
-        "paginate": True
+        "paginate": True,
+        "checked": True
     }
     return render(request, 'product/substitutes_list.html', context)
 

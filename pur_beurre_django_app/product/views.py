@@ -57,6 +57,7 @@ def search_substitutes(request, product_id):
         "substitutes" : substitutes_pag,
         "paginate": True,
         "substitutes_saved" : sub_ids_saved_in_fav,
+        "checked": False
     }
     return render(request, 'product/substitutes_list.html', context)
 

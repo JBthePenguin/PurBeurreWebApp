@@ -362,15 +362,19 @@ header.masthead h2 {
   outline: 0;
 }
 
-#portfolio .btn a, 
+#portfolio .pager a, 
 #favorites .btn a{
   text-decoration: none;
   color: black;
-  font-size: 1.1em;
+  font-size: 0.65em;
 }
 
 #portfolio .pager .btn {
   border-radius: 100px;
+}
+
+#portfolio .pager li {
+  display: inline;
 }
 
 .form-wrapper #submit::-moz-focus-inner {
@@ -444,6 +448,11 @@ header.masthead h2 {
 
 #portfolio label {
   font-size: 0.85em;
+}
+
+#portfolio li {
+  list-style: none;
+  margin: 5px;
 }
 
 #description li {

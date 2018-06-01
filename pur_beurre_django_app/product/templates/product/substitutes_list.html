@@ -20,7 +20,7 @@
         <p>
           <strong>Marque: </strong>{{ product.brands }}
         </p>
-        <a class="btn" href="/product/{{ product.id }}/" onclick="window.open(this.href);  return false;">Voir la fiche descriptive</a>
+        <a class="btn" href="/product/{{ product.id }}/">Voir la fiche descriptive</a>
       </div>
     </div>
   </div>
@@ -47,11 +47,11 @@
           </a>
           <figcaption>
             <strong>{{ substitute.product_name }}</strong><br>Marque: <i>{{ substitute.brands }}</i><br>
-            <a class="btn" href="/product/{{ substitute.id }}/" onclick="window.open(this.href);  return false;">Voir la fiche descriptive</a><br>
+            <a class="btn" href="/product/{{ substitute.id }}/">Voir la fiche descriptive</a><br>
             {% if user.is_authenticated %}
             <!-- Save check for member -->
             <div class="checkbox">
-              {% if 'favorite/' in request.META.HTTP_REFERER %}
+              {% if checked %}
                 <input id="{{ substitute.id }}" type="checkbox" class="save_prod" checked>
               {% else %}
                 {% if substitute.id in substitutes_saved %}
@@ -71,13 +71,13 @@
       <nav class="col-md-10 mx-auto" aria-label="...">
         <ul class="pager col-md-3 mx-auto text-center">
           {% if substitutes.has_previous %}
-          <li class="btn previous col-md-5">
-            <a href="?page={{ substitutes.previous_page_number }}">&larr; Précédent</a>
+          <li class="previous">
+            <a class="btn col-md-5 mx-auto my-auto" href="?page={{ substitutes.previous_page_number }}">&larr; Précédent</a>
           </li>
           {% endif %}
           {% if substitutes.has_next %}
-          <li class="btn next col-md-5">
-            <a href="?page={{ substitutes.next_page_number }}">Suivant &rarr;</a>
+          <li class="next">
+            <a class="btn col-md-5 mx-auto my-auto" href="?page={{ substitutes.next_page_number }}">Suivant &rarr;</a>
           </li>
           {% endif %}
         </ul>
