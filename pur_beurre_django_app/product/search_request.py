@@ -75,6 +75,6 @@ def found_substitutes(product_id):
         ).exclude(product_name=product.product_name, brands=product.brands
         ).filter(nutrition_grades__lte=product.nutrition_grades
         ).order_by("nutrition_grades", "product_name", "brands"
-        ).distinct("nutrition_grades", "product_name", "brands"
+        ).distinct("nutrition_grades", "product_name"
     )
     return product, substitutes

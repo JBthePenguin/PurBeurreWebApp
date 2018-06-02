@@ -47,10 +47,22 @@ $ ./manage.py runserver
 ```
 With your favorite browser, go to this url [http://127.0.0.1:8000/](http://127.0.0.1:8000/) and enjoy to use application
 
-:metal: \*The default language setting is french, if you want to change, you have to choice the second one, and modify *france* and *fr* with an other [available languages](https://en.wiki.openfoodfacts.org/API#Languages) in insert_products_in_db.py :
-* *line 21*
+### Tests:
+To run tests, you have to install [selenium](https://www.seleniumhq.org/docs/)**.
+```sh
+(env)$ pip install selenium
+(env)$ ./manage.py test
+```
+
+###### :metal: \*The default language setting is french, if you want to change, you have to choice the second one, and modify *france* and *fr* with an other [available languages](https://en.wiki.openfoodfacts.org/API#Languages) in insert_products_in_db.py :
+*line 21*
 ```python
     page_prods = openfoodfacts.products.get_by_facets(
         {'country': 'france'}, page=i, locale="fr"
     )
-``
+```
+###### \*\*The used driver is for chrome, if you want to use firefox, you have to change in all app's test.py:
+*line 2*
+```python
+from selenium.webdriver.chrome.webdriver import WebDriver
+```

@@ -38,7 +38,6 @@ def search_substitutes(request, product_id):
             for substitute in substitutes:
                 if fav_substitute == substitute:
                     sub_ids_saved_in_fav.append(fav_substitute.id)
-    print(sub_ids_saved_in_fav)
     if substitutes.count() == 0:
         substitutes_pag = False
     else:

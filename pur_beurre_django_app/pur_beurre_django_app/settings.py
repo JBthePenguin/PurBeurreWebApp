@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'debug_toolbar',
     'registration',
+    'fixture_magic',
 ]
 
 MIDDLEWARE = [
