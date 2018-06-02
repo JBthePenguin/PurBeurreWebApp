@@ -59,7 +59,7 @@ class BrowseAccountTests(StaticLiveServerTestCase):
         assert message == "Un mail de confirmation a été envoyé à votre adresse."
 
     def test_account_login(self):
-        """ test the registration for a new user """
+        """ test the login """
         self.selenium.get(self.live_server_url)
         login_link = self.selenium.find_element_by_css_selector("#visitor_gui a")
         login_link.click()
@@ -90,3 +90,15 @@ class BrowseAccountTests(StaticLiveServerTestCase):
         )
         username = self.selenium.find_element_by_css_selector("h1 strong").text
         assert username == "GROSSEBOUFFE"
+        # disconnect
+        account_links = self.selenium.find_elements_by_css_selector("#member_gui a")
+        disconnect_button = account_links[2]
+        disconnect_button.click()
+        wait.until(
+            EC.presence_of_element_located(
+                (By.ID, "visitor_gui")
+            )
+        )
+        # return to index
+        title = self.selenium.find_element_by_css_selector("h1 strong").text
+        assert "DU GRAS, OUI" in title
