@@ -1,5 +1,16 @@
+{% extends 'product/base.html' %}
+
 {% load static %}
 
-<p>Votre compte est maintenant activé.</p>
+{% block content %}
 
-<a class="js-scroll-trigger" href="../../my_account/"><span class="logo"><img src="{% static 'product/img/logo.png' %}" width="10%"></span>Retour sur le site</a>
+<header id="search" class="masthead text-center text-white d-flex">
+  <div class="container my-auto">
+    <div class="row">
+      <div class="alert alert-warning alert-dismissible col-lg-10 mx-auto">Votre compte est maintenant activé.
+      </div>
+    </div>
+  </div>
+</header>
+
+{% endblock %}

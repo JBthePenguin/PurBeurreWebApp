@@ -72,7 +72,6 @@ class BrowseProductTests(StaticLiveServerTestCase):
         wait.until(
             EC.number_of_windows_to_be(2)
         )
-        print(self.selenium.window_handles[1].title)
         self.selenium.switch_to_window(self.selenium.window_handles[1])
         assert "openfoodfacts" in self.selenium.current_url
         assert second_substitute_name.lower() in self.selenium.title.lower()
