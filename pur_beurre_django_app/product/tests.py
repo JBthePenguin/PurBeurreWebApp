@@ -45,7 +45,7 @@ class BrowseProductTests(StaticLiveServerTestCase):
         # substitutes list template: - product name  - pagination
         product_name = self.selenium.find_element_by_tag_name("h2")
         assert product_name.text == "Nutella"
-        substitute_names =  self.selenium.find_elements_by_css_selector("figcaption strong")
+        substitute_names = self.selenium.find_elements_by_css_selector("figcaption strong")
         assert len(substitute_names) == 6
         # product template:
         # -correct description with the second substitute

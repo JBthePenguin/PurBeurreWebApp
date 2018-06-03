@@ -45,7 +45,16 @@ $ python insert_products_in_db.py
 ```sh
 $ ./manage.py runserver
 ```
-With your favorite browser, go to this url [http://127.0.0.1:8000/](http://127.0.0.1:8000/) and enjoy to use application
+###### If you want to have acces to the custom 'error 404' page, you have to change DEBUG = True in settings.py ...
+*line 26*
+```python
+DEBUG = False
+```
+###### ... and run the server in insecure mode
+```sh
+$ ./manage.py runserver --insecure
+```
+#### NOW, with your favorite browser, go to this url [http://127.0.0.1:8000/](http://127.0.0.1:8000/) and enjoy to use application
 
 ### Tests:
 To run tests, you have to install [selenium](https://www.seleniumhq.org/docs/)**.

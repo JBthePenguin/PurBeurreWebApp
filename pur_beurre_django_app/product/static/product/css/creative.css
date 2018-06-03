@@ -463,7 +463,7 @@ header.masthead h2 {
 
 /*Login Register page*/
 #login_register_page, #my_account_page,
-#page_product_list, #favorites_page {
+#page_product_list, #favorites_page, #error_404 {
   min-height: 100%;
 }
 
