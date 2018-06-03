@@ -23,6 +23,7 @@ from product import views
 
 urlpatterns = [
     path('', views.index),
+    path('mentions/', views.mentions),
     path('product/', include('product.urls')),
     path('account/', include('account.urls')),
     path('favorite/', include('favorite.urls')),

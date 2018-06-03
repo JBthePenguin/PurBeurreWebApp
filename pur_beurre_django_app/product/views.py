@@ -8,16 +8,13 @@ from favorite.db_request import select_substitutes
 from .models import Product
 
 # VIEWS
-def error_404(request, exception):
-    return render(request, 'error/404.html', status=404)
-
-
 def index(request, alert_message=False):
     """ return the home page """
     context = {
         "alert_message": alert_message,
     }
     return render(request, 'product/index.html', context)
+
 
 def search_product(request):
     """ request API Openfoodfacts, redirect to
@@ -72,3 +69,11 @@ def description(request, product_id):
         "product": product
     }
     return render(request, 'product/product.html', context)
+
+
+def error_404(request, exception):
+    return render(request, 'error/404.html', status=404)
+
+
+def mentions(request):
+    return render(request, 'product/mentions.html')

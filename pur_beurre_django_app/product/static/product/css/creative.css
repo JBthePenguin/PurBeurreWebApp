@@ -480,7 +480,7 @@ header.masthead h2 {
   list-style: none;
 }
 
-#login_side, #signup_side {
+#login_side, #signup_side, #mentions_card {
   background-color: #212529;
   border: 3px solid #000000;
   border-radius: 9px;
@@ -489,6 +489,10 @@ header.masthead h2 {
   margin-left: 5px;
   margin-right: 5px;
   max-width: 95%;
+}
+
+#mentions_card {
+  color: #b09d9d;
 }
 
 #login_side input, #signup_side input {
