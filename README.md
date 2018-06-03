@@ -27,51 +27,59 @@ $ source env/bin/activate
 ## Create tables and import data products in database
 #### Tables:
 ```sh
-$ cd pur_beurre_django_app
-$ ./manage.py makemigrations
-$ ./manage.py migrate
+(env)$ cd pur_beurre_django_app
+(env)$ ./manage.py makemigrations
+(env)$ ./manage.py migrate
 ```
 #### Data products\*: 2 choices
 1. **fastest** one,  with a dump file\* (.json) and the django loaddata command
 ```sh
-$ wget -O products.json "https://drive.google.com/uc?export=download&id=1esW4xwGNLCk9ah-hcKbuMCZ2iBjFh5FO"
-$ ./manage.py loaddata products.json
+(env)$ wget -O products.json "https://drive.google.com/uc?export=download&id=1esW4xwGNLCk9ah-hcKbuMCZ2iBjFh5FO"
+(env)$ ./manage.py loaddata products.json
 ```
 2. **slowest** one, with the script that imports datas from the [OpenFoodFacts API](https://en.wiki.openfoodfacts.org/API):
 ```sh
-$ python insert_products_in_db.py
+(env)$ python insert_products_in_db.py
 ```
-## Start and use the Application
+## Start and use the Application**
 ```sh
-$ ./manage.py runserver
-```
-###### If you want to have acces to the custom 'error 404' page, you have to change DEBUG = True in settings.py ...
-*line 26*
-```python
-DEBUG = False
-```
-###### ... and run the server in insecure mode
-```sh
-$ ./manage.py runserver --insecure
+(env)$ ./manage.py runserver
 ```
 #### NOW, with your favorite browser, go to this url [http://127.0.0.1:8000/](http://127.0.0.1:8000/) and enjoy to use application
 
 ### Tests:
-To run tests, you have to install [selenium](https://www.seleniumhq.org/docs/)**.
+To run tests, you have to install [selenium](https://www.seleniumhq.org/docs/)***.
 ```sh
 (env)$ pip install selenium
 (env)$ ./manage.py test
 ```
 
-###### :metal: \*The default language setting is french, if you want to change, you have to choice the second one, and modify *france* and *fr* with an other [available languages](https://en.wiki.openfoodfacts.org/API#Languages) in insert_products_in_db.py :
+### Admin site :
+Create a "superuser" account, start the server ... :
+```sh
+(env)$ ./manage.py createsuperuser
+(env)$ ./manage.py runserver
+```
+... and login to the [admin site : http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin) and enter your new superuser name and password
+##### :metal:
+###### \*The default language setting is french, if you want to change, you have to choice the second one, and modify *france* and *fr* with an other [available languages](https://en.wiki.openfoodfacts.org/API#Languages) in insert_products_in_db.py :
 *line 21*
 ```python
     page_prods = openfoodfacts.products.get_by_facets(
         {'country': 'france'}, page=i, locale="fr"
     )
 ```
-###### \*\*The used driver is for chrome, if you want to use firefox, you have to change in all app's test.py:
+###### \*\*If you want access to the custom 'error 404' page, you have to set DEBUG = True in settings.py, and run the server in insecure mode:
+*line 26*
+```python
+DEBUG = False
+```
+```sh
+(env)$ ./manage.py runserver --insecure
+```
+###### \*\*\*The used driver is for chrome, if you want to use firefox, you have to change in all app's test.py:
 *line 2*
 ```python
 from selenium.webdriver.chrome.webdriver import WebDriver
 ```
+

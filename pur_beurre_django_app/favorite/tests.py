@@ -67,23 +67,43 @@ class BrowseFavoriteTests(StaticLiveServerTestCase):
         first_favorite_link.click()
         wait.until(
             EC.presence_of_element_located(
-                (By.ID, "header_prod_list")
+                (By.CLASS_NAME, "save_prod")
             )
         )
-        substitutes_saved = self.selenium.find_elements_by_class_name("portfolio-box")
+        substitutes_saved = self.selenium.find_elements_by_class_name("save_prod")
         assert len(substitutes_saved) == 3
         # delete favorite
         save_check_buttons = self.selenium.find_elements_by_class_name("save_prod")
         save_check_buttons[0].click()
         popup = self.selenium.switch_to.alert
         popup.accept()
-        self.selenium.refresh()
+        # return to index
+        search_button = self.selenium.find_element_by_css_selector("#topNavBar .col-md-2 a")
+        search_button.click()
+        wait.until(
+            EC.presence_of_element_located(
+                (By.ID, "search")
+            )
+        )
+        # return favorites list template
+        account_links = self.selenium.find_elements_by_css_selector("#member_gui a")
+        account_link = account_links[1]
+        account_link.click()
+        wait.until(
+            EC.presence_of_element_located(
+                (By.ID, "favorites_page")
+            )
+        )
+        # return favorite display with template substitutes_list
+        favorite_links = self.selenium.find_elements_by_css_selector(".card a")
+        first_favorite_link = favorite_links[1]
+        first_favorite_link.click()
         wait.until(
             EC.presence_of_element_located(
                 (By.CLASS_NAME, "save_prod")
             )
         )
-        substitutes_saved = self.selenium.find_elements_by_class_name("portfolio-box")
+        substitutes_saved = self.selenium.find_elements_by_class_name("save_prod")
         assert len(substitutes_saved) == 2
         # delete all substitutes for this product
         save_check_buttons = self.selenium.find_elements_by_class_name("save_prod")
@@ -93,6 +113,17 @@ class BrowseFavoriteTests(StaticLiveServerTestCase):
         save_check_buttons[1].click()
         popup = self.selenium.switch_to.alert
         popup.accept()
+        # return favorites list template
+        account_links = self.selenium.find_elements_by_css_selector("#member_gui a")
+        account_link = account_links[1]
+        account_link.click()
+        wait.until(
+            EC.presence_of_element_located(
+                (By.ID, "favorites_page")
+            )
+        )
+        favorites = self.selenium.find_elements_by_class_name("card")
+        assert len(favorites) == 1
         # return to index
         search_button = self.selenium.find_element_by_css_selector("#topNavBar .col-md-2 a")
         search_button.click()

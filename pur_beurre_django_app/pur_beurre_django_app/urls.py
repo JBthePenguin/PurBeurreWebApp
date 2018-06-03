@@ -27,7 +27,7 @@ urlpatterns = [
     path('product/', include('product.urls')),
     path('account/', include('account.urls')),
     path('favorite/', include('favorite.urls')),
-    re_path(r'^admin/', admin.site.urls),
+    path('admin/', admin.site.urls),
 ]
 
 if settings.DEBUG:
