@@ -4,12 +4,12 @@
 import openfoodfacts
 from requests.exceptions import ConnectionError
 from .models import Product
+from product.save_in_db import save_product
 
 
 def found_product(search_term):
-    """ make request to API openfoodfacts to found a product
-    get it in db and return it """
-    #API request
+    """ make request to API openfoodfacts to found a product """
+    # API request
     try:
         search_result = openfoodfacts.products.search(
             search_term, locale="fr"
@@ -18,63 +18,76 @@ def found_product(search_term):
         product = "API connect error"
     else:
         products = search_result['products']
-        try:
-            product_api = products[0]
-        except IndexError:
+        if len(products) == 0:
             # check if there is a result ...
             product = "api no result"
         else:
-            new_request_in_db = True
             i = 0
-            while new_request_in_db is True:
-                # check if product is in db
+            prod_founded = False
+            while not prod_founded:
                 try:
-                    product_api["code"]
-                except KeyError:
-                    i += 1
-                    try:
-                        product_api = products[i]
-                    except IndexError:
-                        product = "db no result"
-                        new_request_in_db = False
+                    product = products[i]
+                except IndexError:
+                    # check if there is a result ...
+                    product = "api no result"
+                    prod_founded = True
                 else:
                     try:
-                        product = Product.objects.get(code=product_api["code"])
-                    except Product.DoesNotExist:
+                        product["nutrition_grades"]
+                    except KeyError:
                         i += 1
-                        try:
-                            product_api = products[i]
-                        except IndexError:
-                            product = "db no result"
-                            new_request_in_db = False
                     else:
-                        # check if it have categories
-                        if product.categories == "":
-                            i += 1
-                            try:
-                                product_api = products[i]
-                            except IndexError:
-                                product = "db no result"
-                                new_request_in_db = False
-                        else:
-                            new_request_in_db = False
+                        prod_founded = True
     return product
 
 
-def found_substitutes(product_id):
-    """ found substitutes for the product in db """
-    # select products in the same categories with better or same grade
-    product = Product.objects.get(id=product_id)
+def found_substitutes(product_code):
+    """ make request to API openfoodfacts to found substitutes """
+    product = Product.objects.get(code=product_code)
     list_categories = product.categories.split(",")
-    list_categories = list_categories[-3:]
-    categories = ",".join(list_categories)
-    if categories[0] == " ":
-        categories = categories[1:]
-    # query select
-    substitutes = Product.objects.filter(categories__contains=categories
+    i = 1
+    substitutes = []
+    while i < 4:
+        category = list_categories[-i]
+        if category[0] == " ":
+            # remove space
+            category = category[1:]
+        # request API openfoodfacts to found products in same category
+        new_substitutes = openfoodfacts.products.get_by_category(
+            category, locale="fr")
+        # remove the similar products
+        subs = []
+        for new_substitute in new_substitutes:
+            add_sub = True
+            if product.product_name in new_substitute["product_name"]:
+                add_sub = False
+            else:
+                # remove product without nutriscore
+                try:
+                    new_substitute["nutrition_grades"]
+                except KeyError:
+                    add_sub = False
+                else:
+                    if new_substitute["nutrition_grades"] > product.nutrition_grades:
+                        add_sub = False
+                    else:
+                        for substitute in substitutes:
+                            if substitute["code"] == new_substitute["code"]:
+                                add_sub = False
+            if add_sub:
+                subs.append(new_substitute)
+        for sub in subs:
+            substitutes.append(sub)
+        i += 1
+    for substitute in substitutes:
+        save_product(substitute)
+    substitutes = Product.objects.filter(categories__contains=list_categories[-1]
         ).exclude(product_name=product.product_name, brands=product.brands
         ).filter(nutrition_grades__lte=product.nutrition_grades
         ).order_by("nutrition_grades", "product_name", "brands"
         ).distinct("nutrition_grades", "product_name"
     )
+    # substitutes = Product.objects.exclude(
+    #     product_name=product.product_name, brands=product.brands).order_by(
+    #     "nutrition_grades", "product_name", "brands")
     return product, substitutes

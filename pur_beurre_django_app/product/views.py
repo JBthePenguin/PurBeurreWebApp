@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from product.search_request import found_product, found_substitutes
 from favorite.db_request import select_substitutes
+from product.save_in_db import save_product
 from .models import Product
 
 # VIEWS
@@ -24,17 +25,20 @@ def search_product(request):
     product = found_product(search_term)
     if product in ["API connect error", "api no result", "db no result"]:
         return index(request, product)
-    return redirect('substitutes_list', product.id)
+    # save product in db
+    save_product(product)
+    return redirect('substitutes_list', product["code"])
 
 
-def search_substitutes(request, product_id):
-    """ request database to found substitutes and
+def search_substitutes(request, product_code):
+    """ request API Openfoodfacts to found substitutes and
     return the page with pagination (6 elts) """
-    product, substitutes = found_substitutes(product_id)
+    product, substitutes = found_substitutes(product_code)
     sub_ids_saved_in_fav = []
     if request.user.is_authenticated:
         # found if user have favorite with this product and substitutes
-        fav_product, fav_substitutes = select_substitutes(request.user, product.id)
+        fav_product, fav_substitutes = select_substitutes(
+            request.user, product.id)
         for fav_substitute in fav_substitutes:
             for substitute in substitutes:
                 if fav_substitute == substitute:
