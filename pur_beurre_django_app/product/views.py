@@ -43,7 +43,8 @@ def search_substitutes(request, product_code):
             for substitute in substitutes:
                 if fav_substitute == substitute:
                     sub_ids_saved_in_fav.append(fav_substitute.id)
-    if substitutes.count() == 0:
+    # if substitutes.count() == 0:
+    if len(substitutes) == 0:
         substitutes_pag = False
     else:
         paginator = Paginator(substitutes, 6)

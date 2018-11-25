@@ -36,15 +36,20 @@ def save_product(product_api):
             saturated_fat = ""
         try:
             nutriments = product_api["nutriments"]
-            fat_100g = nutriments["fat"]
-            salt_100g = nutriments["salt"]
-            saturated_fat_100g = nutriments["saturated-fat_100g"]
-            sugars_100g = nutriments["sugars_100g"]
+            fat_100g = int(float(nutriments["fat_100g"]))
+            salt_100g = int(float(nutriments["salt_100g"]))
+            saturated_fat_100g = int(float(nutriments["saturated-fat_100g"]))
+            sugars_100g = int(float(nutriments["sugars_100g"]))
         except KeyError:
-            fat_100g = ""
-            salt_100g = ""
-            saturated_fat_100g = ""
-            sugars_100g = ""
+            fat_100g = 0
+            salt_100g = 0
+            saturated_fat_100g = 0
+            sugars_100g = 0
+        except ValueError:
+            fat_100g = 0
+            salt_100g = 0
+            saturated_fat_100g = 0
+            sugars_100g = 0
         product = Product(
             code=product_api["code"],
             product_name=product_api["product_name"],

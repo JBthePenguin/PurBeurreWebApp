@@ -1,6 +1,7 @@
 #! /usr/bin/env python3
 # coding: utf-8
 
+from django.db.models import Q
 import openfoodfacts
 from requests.exceptions import ConnectionError
 from .models import Product
@@ -48,7 +49,10 @@ def found_substitutes(product_code):
     i = 1
     substitutes = []
     while i < 4:
-        category = list_categories[-i]
+        try:
+            category = list_categories[-i]
+        except IndexError:
+            break
         if category[0] == " ":
             # remove space
             category = category[1:]
@@ -72,22 +76,14 @@ def found_substitutes(product_code):
                         add_sub = False
                     else:
                         for substitute in substitutes:
-                            if substitute["code"] == new_substitute["code"]:
+                            if substitute.code == new_substitute["code"]:
                                 add_sub = False
             if add_sub:
                 subs.append(new_substitute)
         for sub in subs:
-            substitutes.append(sub)
+            save_product(sub)
+            substitutes.append(Product.objects.get(code=sub["code"]))
         i += 1
-    for substitute in substitutes:
-        save_product(substitute)
-    substitutes = Product.objects.filter(categories__contains=list_categories[-1]
-        ).exclude(product_name=product.product_name, brands=product.brands
-        ).filter(nutrition_grades__lte=product.nutrition_grades
-        ).order_by("nutrition_grades", "product_name", "brands"
-        ).distinct("nutrition_grades", "product_name"
-    )
-    # substitutes = Product.objects.exclude(
-    #     product_name=product.product_name, brands=product.brands).order_by(
-    #     "nutrition_grades", "product_name", "brands")
+    if len(substitutes) != 0:
+        substitutes.sort(key=lambda x: x.nutrition_grades)
     return product, substitutes
