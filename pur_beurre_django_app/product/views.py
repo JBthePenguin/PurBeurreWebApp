@@ -59,9 +59,9 @@ def search_substitutes(request, product_code):
             substitutes_pag = paginator.page(paginator.num_pages)
     context = {
         "product": product,
-        "substitutes" : substitutes_pag,
+        "substitutes": substitutes_pag,
         "paginate": True,
-        "substitutes_saved" : sub_ids_saved_in_fav,
+        "substitutes_saved": sub_ids_saved_in_fav,
         "checked": False
     }
     return render(request, 'product/substitutes_list.html', context)
@@ -70,6 +70,15 @@ def search_substitutes(request, product_code):
 def description(request, product_id):
     """ return the page with description of one product """
     product = Product.objects.get(id=product_id)
+    # remove .0 if no decimal product
+    if str(product.fat_100g)[-2:] == ".0":
+        product.fat_100g = int(product.fat_100g)
+    if str(product.salt_100g)[-2:] == ".0":
+        product.salt_100g = int(product.salt_100g)
+    if str(product.saturated_fat_100g)[-2:] == ".0":
+        product.saturated_fat_100g = int(product.saturated_fat_100g)
+    if str(product.sugars_100g)[-2:] == ".0":
+        product.sugars_100g = int(product.sugars_100g)
     context = {
         "product": product
     }

@@ -31,7 +31,7 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-12 col-md-6 mx-auto my-auto text-center">
-        <img class="img-fluid" src="/static/product/img/nutrition_grades/nutriscore-{{ product.nutrition_grades }}.png" alt="nutriscore non disponible" width=50%">
+        <img class="img-fluid" src="/static/product/img/nutrition_grades/nutriscore-{{ product.nutrition_grades }}.png" alt="nutriscore non disponible" width="50%">
       </div>
       <div class="col-sm-12 col-md-6 mx-auto my-auto text-center">
         <p>
@@ -39,44 +39,60 @@
         </p>
         <ul class="text-left">
           <li>
-            {% if product.fat == 'low' %}
-            <img class="img-fluid" src="{%static 'product/img/nutriment/low.png' %}"> 
-            {% elif product.fat == 'high' %}
-            <img class="img-fluid" src="{%static 'product/img/nutriment/high.png' %}">
+            {% if product.fat == None %}
+              Matières grasses non renseignées
             {% else %}
-            <img class="img-fluid" src="{%static 'product/img/nutriment/moderate.png' %}">
+              {% if product.fat == 'low' %}
+              <img class="img-fluid" src="{%static 'product/img/nutriment/low.png' %}"> 
+              {% elif product.fat == 'high' %}
+              <img class="img-fluid" src="{%static 'product/img/nutriment/high.png' %}">
+              {% else %}
+              <img class="img-fluid" src="{%static 'product/img/nutriment/moderate.png' %}">
+              {% endif %}
+               {{ product.fat_100g }} g de Matières grasses
             {% endif %}
-             {{ product.fat_100g }} g de Matières grasses
           </li>
           <li>
-            {% if product.saturated_fat == 'low' %}
-            <img class="img-fluid" src="{%static 'product/img/nutriment/low.png' %}"> 
-            {% elif product.saturated_fat == 'high' %}
-            <img class="img-fluid" src="{%static 'product/img/nutriment/high.png' %}">
+            {% if product.saturated_fat == None %}
+              Acides gras saturés non renseignés
             {% else %}
-            <img class="img-fluid" src="{%static 'product/img/nutriment/moderate.png' %}">
+              {% if product.saturated_fat == 'low' %}
+              <img class="img-fluid" src="{%static 'product/img/nutriment/low.png' %}"> 
+              {% elif product.saturated_fat == 'high' %}
+              <img class="img-fluid" src="{%static 'product/img/nutriment/high.png' %}">
+              {% else %}
+              <img class="img-fluid" src="{%static 'product/img/nutriment/moderate.png' %}">
+              {% endif %}
+               {{ product.saturated_fat_100g }} g d'Acides gras saturés
             {% endif %}
-             {{ product.saturated_fat_100g }} g d'Acides gras saturés
           </li>
           <li>
-            {% if product.sugars == 'low' %}
-            <img class="img-fluid" src="{%static 'product/img/nutriment/low.png' %}"> 
-            {% elif product.sugars == 'high' %}
-            <img class="img-fluid" src="{%static 'product/img/nutriment/high.png' %}">
+            {% if product.sugars == None %}
+              Sucres non renseignés
             {% else %}
-            <img class="img-fluid" src="{%static 'product/img/nutriment/moderate.png' %}">
+              {% if product.sugars == 'low' %}
+              <img class="img-fluid" src="{%static 'product/img/nutriment/low.png' %}"> 
+              {% elif product.sugars == 'high' %}
+              <img class="img-fluid" src="{%static 'product/img/nutriment/high.png' %}">
+              {% else %}
+              <img class="img-fluid" src="{%static 'product/img/nutriment/moderate.png' %}">
+              {% endif %}
+               {{ product.sugars_100g }} g de Sucres
             {% endif %}
-             {{ product.sugars_100g }} g de Sucres
           </li>
           <li>
-            {% if product.salt == 'low' %}
-            <img class="img-fluid" src="{%static 'product/img/nutriment/low.png' %}"> 
-            {% elif product.salt == 'high' %}
-            <img class="img-fluid" src="{%static 'product/img/nutriment/high.png' %}">
+            {% if product.salt == None %}
+              Sel non renseigné
             {% else %}
-            <img class="img-fluid" src="{%static 'product/img/nutriment/moderate.png' %}">
+              {% if product.salt == 'low' %}
+              <img class="img-fluid" src="{%static 'product/img/nutriment/low.png' %}"> 
+              {% elif product.salt == 'high' %}
+              <img class="img-fluid" src="{%static 'product/img/nutriment/high.png' %}">
+              {% else %}
+              <img class="img-fluid" src="{%static 'product/img/nutriment/moderate.png' %}">
+              {% endif %}
+               {{ product.salt_100g }} g de Sel
             {% endif %}
-             {{ product.salt_100g }} g de Sel
           </li>
         </ul>
       </div>

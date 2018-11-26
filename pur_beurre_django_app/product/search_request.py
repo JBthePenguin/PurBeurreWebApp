@@ -48,7 +48,8 @@ def found_substitutes(product_code):
     list_categories = product.categories.split(",")
     i = 1
     substitutes = []
-    while i < 4:
+    while i < 3:
+        # search substitute in the 3 last categories 
         try:
             category = list_categories[-i]
         except IndexError:

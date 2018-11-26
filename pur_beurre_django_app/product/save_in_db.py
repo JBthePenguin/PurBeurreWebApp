@@ -25,31 +25,52 @@ def save_product(product_api):
             image_small_url = ""
         try:
             nutrient_level = product_api["nutrient_levels"]
-            fat = nutrient_level["fat"]
-            salt = nutrient_level["salt"]
-            sugars = nutrient_level["sugars"]
-            saturated_fat = nutrient_level["saturated-fat"]
         except KeyError:
-            fat = ""
-            salt = ""
-            sugars = ""
-            saturated_fat = ""
+            fat = None
+            salt = None
+            sugars = None
+            saturated_fat = None
+        else:
+            try:
+                fat = nutrient_level["fat"]
+            except (ValueError, KeyError):
+                fat = None
+            try:
+                salt = nutrient_level["salt"]
+            except (ValueError, KeyError):
+                salt = None
+            try:
+                saturated_fat = nutrient_level["saturated-fat"]
+            except (ValueError, KeyError):
+                saturated_fat = None
+            try:
+                sugars = nutrient_level["sugars"]
+            except (ValueError, KeyError):
+                sugars = None
         try:
             nutriments = product_api["nutriments"]
-            fat_100g = int(float(nutriments["fat_100g"]))
-            salt_100g = int(float(nutriments["salt_100g"]))
-            saturated_fat_100g = int(float(nutriments["saturated-fat_100g"]))
-            sugars_100g = int(float(nutriments["sugars_100g"]))
         except KeyError:
-            fat_100g = 0
-            salt_100g = 0
-            saturated_fat_100g = 0
-            sugars_100g = 0
-        except ValueError:
-            fat_100g = 0
-            salt_100g = 0
-            saturated_fat_100g = 0
-            sugars_100g = 0
+            fat_100g = None
+            salt_100g = None
+            saturated_fat_100g = None
+            sugars_100g = None
+        else:
+            try:
+                fat_100g = float(nutriments["fat_100g"])
+            except (ValueError, KeyError):
+                fat_100g = None
+            try:
+                salt_100g = float(nutriments["salt_100g"])
+            except (ValueError, KeyError):
+                salt_100g = None
+            try:
+                saturated_fat_100g = float(nutriments["saturated-fat_100g"])
+            except (ValueError, KeyError):
+                saturated_fat_100g = None
+            try:
+                sugars_100g = float(nutriments["sugars_100g"])
+            except (ValueError, KeyError):
+                sugars_100g = None
         product = Product(
             code=product_api["code"],
             product_name=product_api["product_name"],
