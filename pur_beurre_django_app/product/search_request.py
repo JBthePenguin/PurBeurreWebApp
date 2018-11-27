@@ -49,7 +49,7 @@ def found_substitutes(product_code):
     i = 1
     substitutes = []
     while i < 3:
-        # search substitute in the 3 last categories 
+        # search substitute in the 2 last categories 
         try:
             category = list_categories[-i]
         except IndexError:
@@ -67,7 +67,7 @@ def found_substitutes(product_code):
             if product.product_name in new_substitute["product_name"]:
                 add_sub = False
             else:
-                # remove product without nutriscore
+                # remove product without or bad nutriscore
                 try:
                     new_substitute["nutrition_grades"]
                 except KeyError:

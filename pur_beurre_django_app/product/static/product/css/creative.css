@@ -281,7 +281,7 @@ header.masthead h2 {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
-  color: #999;
+  color: black;
   float: left;
   width: 75%;
 }
@@ -429,7 +429,7 @@ header.masthead h2 {
 }
 
 .plus-image {
-  right: -8%;
+  right: --8%;
   position: absolute;
   margin-top: -25px;
   margin-left: -25px;

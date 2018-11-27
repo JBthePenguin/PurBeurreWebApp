@@ -10,7 +10,7 @@ def save_product(product_api):
     try:
         product = Product.objects.get(code=product_api["code"])
     except Product.DoesNotExist:
-        # save product in DB
+        # save product in DB after except all Errors
         try:
             brands = product_api["brands"]
         except KeyError:
