@@ -1,5 +1,5 @@
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
-from selenium.webdriver.chrome.webdriver import WebDriver
+from selenium.webdriver.firefox.webdriver import WebDriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -64,7 +64,7 @@ class BrowseProductTests(StaticLiveServerTestCase):
         images = self.selenium.find_elements_by_tag_name("img")
         nutriscore_url = images[2].get_attribute("src")
         nutriscore = nutriscore_url[-5]
-        assert nutriscore == "a"
+        assert nutriscore < "e"
         # link to OpenFoddFacts product page
         off_link = self.selenium.find_element_by_css_selector("section a")
         off_link.click()
@@ -73,5 +73,10 @@ class BrowseProductTests(StaticLiveServerTestCase):
             EC.number_of_windows_to_be(2)
         )
         self.selenium.switch_to_window(self.selenium.window_handles[1])
+        wait.until(
+            EC.presence_of_element_located(
+                (By.ID, "top-bar")
+            )
+        )
         assert "openfoodfacts" in self.selenium.current_url
         assert second_substitute_name.lower() in self.selenium.title.lower()
