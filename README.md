@@ -8,7 +8,6 @@ Connect to PostgreSQL client, create database and new user with privileges:
 $ sudo su - postgres
 postgres@somewhere:~$ psql
 postgres=# CREATE USER "pur_beurre_web_app";
-postgres=# CREATE USER "pur_beurre_web_app";
 postgres=# CREATE DATABASE "db_pur_beurre";
 postgres=# ALTER USER pur_beurre_web_app WITH PASSWORD 'Hummm';
 postgres=# GRANT ALL PRIVILEGES ON DATABASE db_pur_beurre TO pur_beurre_web_app;
