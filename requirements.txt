@@ -10,4 +10,5 @@ sqlalchemy
 
 git+https://github.com/openfoodfacts/openfoodfacts-python
 
+django-fixture-magic
 
