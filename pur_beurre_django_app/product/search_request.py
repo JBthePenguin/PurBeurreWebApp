@@ -1,7 +1,6 @@
 #! /usr/bin/env python3
 # coding: utf-8
 
-from django.db.models import Q
 import openfoodfacts
 from requests.exceptions import ConnectionError
 from .models import Product
